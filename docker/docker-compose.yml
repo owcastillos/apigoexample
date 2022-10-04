@@ -1,16 +1,17 @@
 version: '3.7'
 services:
   db-api-test:
-    platform: linux/x86_64
     image: mysql:5.7.39-oracle
+    container_name: api-test-db-container
+    platform: linux/x86_64
     environment:
       MYSQL_DATABASE: 'api-test'
       MYSQL_USER: 'local'
       MYSQL_PASSWORD: 'local'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - '3316:3306'
+      - '3306:3306'
     expose:
-      - '3316'
+      - '3306'
     volumes:
-      - "./scripts/sql/user.sql:/docker-entrypoint-initdb.d/user.sql"
+      - "./sql/user.sql:/docker-entrypoint-initdb.d/user.sql"

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -160,13 +161,18 @@ func DeleteUserById(idUser string) *models.Result {
 }
 
 func createDBConnection() *sql.DB {
-	connString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", "local", "local", "localhost", "3316", "api-test")
+	connString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
+		// connString := fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_NAME"))
 	db, err := sql.Open("mysql", connString)
 	if err != nil {
 		log.Panic(err)
 		return nil
 	}
-	err = db.Ping()
 	if err != nil {
 		log.Panic(err)
 		defer db.Close()

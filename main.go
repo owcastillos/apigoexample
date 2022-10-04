@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/gorilla/mux"
@@ -20,7 +21,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", httpHandler)
 	router.HandleFunc("/{idUser}", httpHandler)
-	log.Fatal(http.ListenAndServe(":3200", router))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("APP_PORT")), router))
 }
 
 func httpHandler(w http.ResponseWriter, r *http.Request) {
