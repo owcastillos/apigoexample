@@ -162,7 +162,6 @@ func DeleteUserById(idUser string) *models.Result {
 
 func createDBConnection() *sql.DB {
 	connString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
-		// connString := fmt.Sprintf("%s:%s@tcp(%s)/%s?parseTime=true",
 		os.Getenv("DB_USER"),
 		os.Getenv("DB_PASSWORD"),
 		os.Getenv("DB_HOST"),

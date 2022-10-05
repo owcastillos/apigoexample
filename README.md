@@ -22,6 +22,7 @@ Following you can find the instructions:
 
 * `git clone https://github.com/owcastillos/apigoexample` this repository
 * Change into the new directory `cd apigoexample`
+* If you want to run locally, execute `go run main.go`
 * Open `Dockerfile` and set your DB env variables
 * Open `go-api-test.yml` and change image value `owcastillos/go-api-test:latest` by `{your_docker_user}/{your_docker_repo}:latest`
 * Execute `sudo docker build --tag {your_docker_user}/{your_docker_repo} .` Don't forget last dot character
